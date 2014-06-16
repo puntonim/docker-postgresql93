@@ -53,5 +53,5 @@ coverage.xml
 docs/_build/
 
 # Local files and dirs
-mycommand.tmp
+*.tmp
 pgdatatmp
