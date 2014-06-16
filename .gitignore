@@ -52,6 +52,6 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-# Local files and dirs
+# Temp files and dirs
 *.tmp
 pgdatatmp
