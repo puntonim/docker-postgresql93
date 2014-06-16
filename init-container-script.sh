@@ -30,28 +30,28 @@ move_postgresql_data_to_shared_volume () {
         echo "Data have already been moved."
     else
         # Change the ownership of the folder.
-        mkdir -p /pgdata/data
-        mkdir -p /pgdata/logs
-        chown -R postgres:postgres /pgdata
+        mkdir -p /srv/pgdata/data
+        mkdir -p /srv/pgdata/logs
+        chown -R postgres:postgres /srv/pgdata
 
         # Stop PostgreSQL.
         service postgresql stop
 
         # Ensure postgresql is stopped and the dirs are empty.
         service postgresql status
-        if [ $? = 3 ] && [ ! "$(ls -A /pgdata/data)" ] && [ ! "$(ls -A /pgdata/logs)" ]
+        if [ $? = 3 ] && [ ! "$(ls -A /srv/pgdata/data)" ] && [ ! "$(ls -A /srv/pgdata/logs)" ]
         then
             # Move the data dir to the mounted volume.
-            su - postgres -c "mv /var/lib/postgresql/9.3/main /pgdata/data"
-            su - postgres -c "ln -s /pgdata/data/main /var/lib/postgresql/9.3/main"
+            su - postgres -c "mv /var/lib/postgresql/9.3/main /srv/pgdata/data"
+            su - postgres -c "ln -s /srv/pgdata/data/main /var/lib/postgresql/9.3/main"
 
             # Move the logs to the mounted volume.
-            mv /var/log/postgresql /pgdata/logs
-            ln -s /pgdata/logs/postgresql /var/log/postgresql
+            mv /var/log/postgresql /srv/pgdata/logs
+            ln -s /srv/pgdata/logs/postgresql /var/log/postgresql
 
             echo "PostgreSQL data moved, symlinks created."
         else
-            echo "/pgdata/data or /pgdata/logs are not empty dirs. Operation aborted."
+            echo "/srv/pgdata/data or /srv/pgdata/logs are not empty dirs. Operation aborted."
         fi
 
         # Start PostgreSQL.
@@ -78,10 +78,10 @@ then
 fi
 
 # STEP 3: move PostgreSQL data folder to the shared volume.
-# Ensure /pgdata is mounted, which means the container was run with:
-# docker run ... --volume=/localpath:/pgdata ...
+# Ensure /srv/pgdata is mounted, which means the container was run with:
+# docker run ... --volume=/localpath:/srv/pgdata ...
 echo " * Moving PostgreSQL data..."
-if [[ ! "$(mount)" =~ \ /pgdata\ type ]]
+if [[ ! "$(mount)" =~ \ /srv/pgdata\ type ]]
 then
     echo "There is no mounted volume"
 else
