@@ -1,6 +1,6 @@
 # DOCKER-POSTGRESQL93
 
-A Docker container for PostgreSQL 9.3 with special features
+A Docker container for PostgreSQL 9.3 with *special features*.
 
 Container features: 
 - Ubuntu 14.04 based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
