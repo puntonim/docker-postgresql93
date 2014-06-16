@@ -10,6 +10,9 @@ Container features:
 - Share PostgreSQL data dir and logs with the host and other containers
 - On a `docker run`: add your public SSH key to the container for an easy access and create your PostgreSQL user
 
+Links:
+- [Docker Hub page](https://registry.hub.docker.com/u/nimiq/postgresql93/)
+- My blog post: TODO
 
 ## BUILD
 ```
