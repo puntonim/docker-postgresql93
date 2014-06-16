@@ -1,7 +1,15 @@
 # DOCKER-POSTGRESQL93
 
-A Docker container for PostgreSQL 9.3.   
-TODO: describe some features
+A Docker container for PostgreSQL 9.3 with special features
+
+Container features: 
+- Ubuntu 14.04 based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
+- PostgreSQL 9.3
+- SSH server
+- Expose port 22 (SSH) and 5432 (PostgreSQL)
+- Share PostgreSQL data dir and logs with the host and other containers
+- On a `docker run`: add your public SSH key to the container for an easy access and create your PostgreSQL user
+
 
 ## BUILD
 ```
