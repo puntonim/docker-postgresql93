@@ -54,13 +54,19 @@ $ read MY_SSH_KEY < ~/.ssh/id_rsa.pub
 $ docker run -ti --rm -p 2223:22 -p 5432:5432 --name postgresql --volume=/mylocaldir:/pgdata -e "PG_USERNAME=myuser" -e "PG_PASSWORD=mypass" -e "SSH_PUBLIC_KEY=$MY_SSH_KEY" nimiq/postgresql /sbin/my_init -- bash
 ```
 
-To test the PostgreSQL server, you can run from the host:
-```
-psql -h localhost -p 5432 -U myuser myuser
-```
-
 ## START/STOP
 ```
 $ docker start postgresql
 $ docker stop postgresql
+```
+
+## SSH, POSTGRESQL CONNECTIONS
+To SSH into the container, run from the host:
+```
+ssh root@127.0.0.1 -p 2223
+```
+
+To connect to the PostgreSQL server, run from the host:
+```
+psql -h localhost -p 5432 -U myuser myuser
 ```
