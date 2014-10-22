@@ -1,14 +1,14 @@
 # DOCKER-POSTGRESQL93
 
-A Docker container for PostgreSQL 9.3 with *special features*. Available for pulling from the
+A [Docker](https://www.docker.com/) container for PostgreSQL 9.3 with *special features*. Available for pulling from the
 [Docker Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/).
 
 Features:  
 - Based on [Ubuntu 14.04](http://www.ubuntu.com/) and [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
 - [PostgreSQL 9.3](http://www.postgresql.org/)
-- Create your PostgreSQL *superuser* with the given *password*
+- Automatically create your PostgreSQL *superuser* with the given *password*
 - Integrated [SSH server](http://en.wikipedia.org/wiki/Secure_Shell)
-- Automatically add your *public key* to the container's SSH server for an easy access
+- Add your *public key* to the container's SSH server for an easy access
 - Expose to the host the *ports* 22 (SSH) and 5432 (PostgreSQL)
 - Share PostgreSQL *data directory* and *log files* with the host and other Docker containers
 
