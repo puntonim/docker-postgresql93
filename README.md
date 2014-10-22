@@ -3,13 +3,14 @@
 A Docker container for PostgreSQL 9.3 with *special features*. Available for pulling from the
 [Docker Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/).
 
-Container features:  
-- Ubuntu 14.04 based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)  
-- PostgreSQL 9.3  
-- SSH server  
-- Expose port 22 (SSH) and 5432 (PostgreSQL)  
-- Share PostgreSQL data dir and logs with the host and other containers  
-- On a `docker run`: add your public SSH key to the container for an easy access and create your PostgreSQL user  
+Features:  
+- Based on [Ubuntu 14.04](http://www.ubuntu.com/) and [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
+- [PostgreSQL 9.3](http://www.postgresql.org/)
+- Create your PostgreSQL *superuser* with the given *password*
+- Integrated [SSH server](http://en.wikipedia.org/wiki/Secure_Shell)
+- Automatically add your *public key* to the container's SSH server for an easy access
+- Expose to the host the *ports* 22 (SSH) and 5432 (PostgreSQL)
+- Share PostgreSQL *data directory* and *log files* with the host and other Docker containers
 
 Links:  
 - [Docker Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/)
