@@ -1,6 +1,7 @@
 # DOCKER-POSTGRESQL93
 
-A Docker container for PostgreSQL 9.3 with *special features*.
+A Docker container for PostgreSQL 9.3 with *special features*. Available for pulling from the
+[Docker Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/).
 
 Container features:  
 - Ubuntu 14.04 based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)  
@@ -11,8 +12,8 @@ Container features:
 - On a `docker run`: add your public SSH key to the container for an easy access and create your PostgreSQL user  
 
 Links:  
-- [Docker Hub page](https://registry.hub.docker.com/u/nimiq/postgresql93/)  
-- My blog post: TODO
+- [Docker Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/)
+- [Project page](http://painl.es/docker-postgresql/) in my website
 
 ## BUILD
 ```
