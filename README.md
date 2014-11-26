@@ -1,7 +1,7 @@
 # DOCKER-POSTGRESQL93
 
-A [Docker](https://www.docker.com/) container for PostgreSQL 9.3 with *special features*. Available for pulling from the
-[Docker Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/).
+A [Docker](https://www.docker.com/) container for PostgreSQL 9.3 with *special features*. Available for pulling from
+[Docker Hub Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/).
 
 Features:  
 - Based on [Ubuntu 14.04](http://www.ubuntu.com/) and [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
@@ -13,7 +13,7 @@ Features:
 - Share PostgreSQL *data directory* and *log files* with the host and other Docker containers
 
 Links:  
-- [Docker Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/)
+- [Docker Hub Registry](https://registry.hub.docker.com/u/nimiq/postgresql93/)
 - [Project page](http://painl.es/docker-postgresql/) in my website
 
 ## BUILD
@@ -72,3 +72,12 @@ To connect to the PostgreSQL server, run from the host:
 ```
 psql -h localhost -p 5432 -U myuser myuser
 ```
+
+## Key Technologies
+Key technologies used in *Docker-PostgreSQL93*:
+
+- Docker
+- PostgreSQL
+- Bash shell scripting, Linux, Ubuntu, runit
+- Baseimage-Docker
+- Git, GitHub
