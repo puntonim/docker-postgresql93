@@ -2,28 +2,18 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:latest
+FROM ubuntu
 
 # Set correct environment variables.
 ENV HOME /root
-
-# Regenerate SSH host keys. baseimage-docker does not contain any, so you
-# have to do that yourself. You may also comment out this instruction; the
-# init system will auto-generate one during boot.
-RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
-
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
-
-
-##################################################################################################
-## START CUSTOMIZATION
 
 VOLUME ["/srv/pgdata"]
 
 # Install PostgreSQL 9.3.
 RUN apt-get update
 RUN apt-get install -y postgresql-9.3
+RUN apt-get install -y openssh-server openssh-client
+RUN service ssh restart 
 
 # Adjust PostgreSQL configuration so that remote connections to the database are possible.
 # Note: this is not a security threat because the port 5432 is firewalled in the host machine.
@@ -35,20 +25,18 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 EXPOSE 5432 22
 
 # Add the PostgreSQL start script (executed on a `docker run`).
-ADD start-postgresql-script.sh /etc/my_init.d/01_start_postgresql.sh
-RUN chmod +x /etc/my_init.d/01_start_postgresql.sh
+ADD start-postgresql-script.sh /etc/init.d/01_start_postgresql.sh
+RUN chmod +x /etc/init.d/01_start_postgresql.sh
 
 # Add the init-container script (executed on a `docker run`).
-ADD init-container-script.sh /etc/my_init.d/02_init_container.sh
-RUN chmod +x /etc/my_init.d/02_init_container.sh
+ADD init-container-script.sh /etc/init.d/02_init_container.sh
+RUN chmod +x /etc/init.d/02_init_container.sh
 
 ## END CUSTOMIZATION
 ##################################################################################################
 
-
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 
 ###################################################################################################
 ## HOW TO USE IT
