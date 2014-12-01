@@ -13,6 +13,7 @@ VOLUME ["/srv/pgdata"]
 RUN apt-get update
 RUN apt-get install -y postgresql-9.3
 RUN apt-get install -y openssh-server openssh-client
+RUN service ssh restart 
 
 # Adjust PostgreSQL configuration so that remote connections to the database are possible.
 # Note: this is not a security threat because the port 5432 is firewalled in the host machine.
