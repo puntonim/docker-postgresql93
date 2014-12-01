@@ -15,10 +15,10 @@ RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
-
 ##################################################################################################
 ## START CUSTOMIZATION
 
+# Create a mount point
 VOLUME ["/srv/pgdata"]
 
 # Install PostgreSQL 9.3.
