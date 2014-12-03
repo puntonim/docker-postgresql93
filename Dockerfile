@@ -2,7 +2,7 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:0.9.13
+FROM phusion/baseimage:0.9.15
 
 # Set correct environment variables.
 ENV HOME /root
@@ -11,6 +11,17 @@ ENV HOME /root
 # have to do that yourself. You may also comment out this instruction; the
 # init system will auto-generate one during boot.
 RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
+
+# work around for AUFS bug
+# as per https://github.com/docker/docker/issues/783#issuecomment-56013588
+RUN mkdir /etc/ssl/private-copy; mv /etc/ssl/private/* /etc/ssl/private-copy/; rm -r /etc/ssl/private; mv /etc/ssl/private-copy /etc/ssl/private; chmod -R 0700 /etc/ssl/private; chown -R postgres /etc/ssl/private
+
+# ideal solution is to change to devmapper for storage 
+# add the following line to /etc/docker/default
+# DOCKER_OPTS="--storage-driver=devicemapper"
+# then restart the docker service
+# see here if you have existing containers you need to backup
+# http://muehe.org/posts/switching-docker-from-aufs-to-devicemapper/
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
