@@ -34,7 +34,7 @@ RUN apt-get install -y postgresql-9.3
 
 # work around for AUFS bug
 # as per https://github.com/docker/docker/issues/783#issuecomment-56013588
-RUN mkdir /etc/ssl/private-copy; mv /etc/ssl/private/* /etc/ssl/private-copy/; rm -r /etc/ssl/private; mv /etc/ssl/private-copy /etc/ssl/private; chmod -R 0700     /etc/ssl/private; chown -R postgres /etc/ssl/private
+RUN echo "mkdir /etc/ssl/private-copy; mv /etc/ssl/private/* /etc/ssl/private-copy/; rm -r /etc/ssl/private; mv /etc/ssl/private-copy /etc/ssl/private; chmod -R 0700 /etc/ssl/private; chown -R postgres /etc/ssl/private" >> /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 # Adjust PostgreSQL configuration so that remote connections to the database are possible.
 # Note: this is not a security threat because the port 5432 is firewalled in the host machine.
